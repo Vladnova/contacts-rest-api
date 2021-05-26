@@ -81,7 +81,7 @@ const validateUpdateContact = (req, res, next) => {
     name: Joi.string(),
     email: Joi.string(),
     phone: Joi.string(),
-  });
+  }).min(1);
   const resultUpdate = updateUserRules.validate(req.body);
   if (resultUpdate.error) {
     return res.status(400).json({ message: 'missing fields' });
