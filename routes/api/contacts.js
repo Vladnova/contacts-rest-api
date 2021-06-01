@@ -8,7 +8,7 @@ const {
   validateCreateContact,
   changeContact,
   validateUpdateContact,
-} = require('./contacts-controllers');
+} = require('../controllers/contacts');
 
 router.get('/', getContacts);
 
