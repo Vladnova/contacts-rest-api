@@ -1,8 +1,20 @@
-const createContact = async (req, res, next) => {
+const {Contact}=require('../../../model');
+
+const add = async (req, res, next) => {
+  const {body}=req;
   try {
-    const contacts = await addContact(req.body);
-    res.status(201).send(contacts);
+    const data = await Contact.create(body);
+
+    res.status(201).json({
+      status:"success",
+      code:201,
+      data:{
+        result:data
+      }
+    }) 
   } catch (error) {
-    res.status(400).send({ message: 'missing required name field' });
+   next(error)
   }
 };
+
+module.exports =add;
