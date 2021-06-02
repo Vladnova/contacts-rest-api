@@ -5,7 +5,7 @@ const create = (req, res, next) => {
     name: Joi.string().required(),
     email: Joi.string().required(),
     phone: Joi.string().required(),
-    favorite: Joi.boolean(),
+    favorite: Joi.boolean().default(false),
   });
 
   const result = createUserRules.validate(req.body);
@@ -21,7 +21,8 @@ const update = (req, res, next) => {
     name: Joi.string(),
     email: Joi.string(),
     phone: Joi.string(),
-  });
+    favorite: Joi.boolean(),
+  }).min(1);
   const resultUpdate = updateUserRules.validate(req.body);
   if (resultUpdate.error) {
     return res.status(400).json({ message: 'missing fields' });
