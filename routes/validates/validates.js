@@ -30,7 +30,22 @@ const update = (req, res, next) => {
   next();
 };
 
+const login = (req, res, next) => {
+  const loginUserRules = Joi.object({
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+  });
+
+  const result = loginUserRules.validate(req.body);
+  if (result.error) {
+    return res.status(400).send({ message: 'missing required name field' });
+  }
+
+  next();
+};
+
 module.exports = {
   create,
   update,
+  login,
 };
