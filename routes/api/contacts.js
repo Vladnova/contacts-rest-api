@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const validate = require('../validates');
+const validate = require('../../middleware/validates');
 const ctrl = require('../controllers/contacts');
 
 router.get('/', ctrl.getAll);
