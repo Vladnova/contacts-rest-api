@@ -1,7 +1,7 @@
 const { User } = require('../models');
 
-const getOne = item => {
-  return User.findOne(item);
+const getOne = filter => {
+  return User.findOne(filter);
 };
 
 const add = ({ email, password }) => {

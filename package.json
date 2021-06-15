@@ -21,7 +21,8 @@
     "mongoose": "^5.12.12",
     "morgan": "1.10.0",
     "notenv": "^2.0.3",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^7.19.0",

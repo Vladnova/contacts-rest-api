@@ -1,29 +1,32 @@
-const {users:service}=require("../../../services");
+const { users: service } = require('../../../services');
 
-const signup= async(req,res,next)=>{
-    const {email, password}=req.body;
+const signup = async (req, res, next) => {
+  const { email, password } = req.body;
 
-    try {
-        const result = await service.getOne({email});
-        if(result){
-            res.status(409).json({
-                status:"error",
-                code:409,
-                message: "Email in use",
-            })
-        }
-
-        const data=await service.add(req.body);
-        res.status(201).json({
-            status: "success",
-            code:201,
-            message:"Add success",
-        })
-        
-    } catch (error) {
-        next(error) ;
+  try {
+    const result = await service.getOne({ email });
+    if (result) {
+      res.status(409).json({
+        status: 'error',
+        code: 409,
+        message: 'Email in use',
+      });
     }
+
+    const user = await service.add({ email, password });
+
+    res.status(201).json({
+      status: 'success',
+      code: 201,
+      data: {
+        email: user.email,
+        subscription: user.subscription,
+      },
+      message: 'Add success',
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
-
-module.exports=signup;
+module.exports = signup;

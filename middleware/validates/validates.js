@@ -29,12 +29,13 @@ const update = (req, res, next) => {
   next();
 };
 
-const login = (req, res, next) => {
+const loginAndSignup = (req, res, next) => {
   const loginUserRules = Joi.object({
     email: Joi.string().required(),
     password: Joi.string().required(),
     token: Joi.string(),
     subscription: Joi.string().default('starter'),
+    owner: Joi.string(),
   });
 
   const result = loginUserRules.validate(req.body);
@@ -45,22 +46,22 @@ const login = (req, res, next) => {
   next();
 };
 
-const subscription = (req, res, next) => {
-  const subscriptionRules = Joi.object({
-    subscription: Joi.string().valid('starter', 'pro', 'business').required(),
-  });
+// const subscription = (req, res, next) => {
+//   const subscriptionRules = Joi.object({
+//     subscription: Joi.string().valid('starter', 'pro', 'business').required(),
+//   });
 
-  const result = subscriptionRules.validate(req.body);
-  if (result.error) {
-    return res.status(400).send({ message: 'missing required name field' });
-  }
+//   const result = subscriptionRules.validate(req.body);
+//   if (result.error) {
+//     return res.status(400).send({ message: 'missing required name field' });
+//   }
 
-  next();
-};
+//   next();
+// };
 
 module.exports = {
   create,
   update,
-  login,
-  subscription,
+  loginAndSignup,
+  // subscription,
 };

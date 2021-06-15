@@ -3,5 +3,5 @@ const usersApi = require('./users');
 
 module.exports = {
   contactsApi,
-  usersApi
+  usersApi,
 };
