@@ -1,5 +1,5 @@
 
-const {Contact}=require('../../../model');
+const {Contact}=require('../../../models');
 
 const getAll=async(req,res,next)=>{
     const {query}=req;

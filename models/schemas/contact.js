@@ -1,4 +1,4 @@
-const { Schema} = require('mongoose');
+const { Schema, SchemaTypes } = require('mongoose');
 
 const contactSchema = Schema({
   name: {
@@ -7,17 +7,21 @@ const contactSchema = Schema({
   },
   email: {
     type: String,
-    unique:true,
+    unique: true,
   },
   phone: {
     type: String,
     required: [true, 'Set phone for contact'],
-    unique:true,
+    unique: true,
   },
   favorite: {
     type: Boolean,
     default: false,
   },
+  owner: {
+    type: SchemaTypes.ObjectId,
+    ref: 'user',
+  },
 });
 
-module.exports=contactSchema;
+module.exports = contactSchema;

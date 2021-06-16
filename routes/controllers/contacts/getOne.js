@@ -1,11 +1,10 @@
-const {Contact}=require('../../../model');
+const {Contact}=require('../../../models');
 
 const getOne= async(req,res,next)=>{
     const {contactId}=req.params;
 
     try {
         const result =await Contact.findById(contactId);
-        console.log(result);
         if(!result){
             return res.status(404).json({
                 status: 'error',
