@@ -1,4 +1,4 @@
-const current = (req, res, next) => {
+const current = (req, res, _) => {
   const { email, subscription } = req.user;
 
   res.json({
