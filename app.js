@@ -3,9 +3,10 @@ const logger = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const { contactsApi, usersApi } = require('./routes/api');
+require('./configs/config-passport');
 
-require('./routes/configs/config-passport');
+
+const { contactsApi, usersApi } = require('./routes/api');
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
