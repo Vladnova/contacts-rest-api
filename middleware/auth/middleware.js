@@ -1,4 +1,3 @@
-// const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const { users: services } = require('../../services');
 require('dotenv').config();
@@ -20,9 +19,9 @@ const auth = async (req, res, next) => {
 
     jwt.verify(token, SECRET_KEY);
 
-    const { id } = jwt.decode(token);
+    const { _id } = jwt.decode(token);
 
-    const user = await services.findUser({ id });
+    const user = await services.getOne({ _id });
 
     if (!user) {
       return res.status(401).json({
@@ -43,21 +42,5 @@ const auth = async (req, res, next) => {
     });
   }
 };
-
-// const passport = require('passport');
-
-// const auth = (req, res, next) => {
-//   passport.authenticate('jwt', { session: false }, (err, user) => {
-//     if (!user || err) {
-//       return res.status(401).json({
-//         status: 'error',
-//         code: 401,
-//         message: 'Not authorized',
-//       });
-//     }
-//     req.user = user;
-//     next();
-//   });
-// };
 
 module.exports = auth;

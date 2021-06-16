@@ -18,7 +18,7 @@ const login = async (req, res, next) => {
 
     const { SECRET_KEY } = process.env;
     const payload = {
-      id: user._id,
+      _id: user._id,
     };
 
     const token = jwt.sign(payload, SECRET_KEY);

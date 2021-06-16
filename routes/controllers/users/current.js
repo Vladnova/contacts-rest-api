@@ -1,7 +1,7 @@
 const current = (req, res, _) => {
   const { email, subscription } = req.user;
 
-  res.json({
+  return res.json({
     status: 'success',
     code: 200,
     data: {
