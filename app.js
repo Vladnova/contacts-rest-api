@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 
 require('./configs/config-passport');
 
-
 const { contactsApi, usersApi } = require('./routes/api');
 const app = express();
 
@@ -15,6 +14,8 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(express.static('public'));
 
 app.use('/api/contacts', contactsApi);
 app.use('/api/users', usersApi);
