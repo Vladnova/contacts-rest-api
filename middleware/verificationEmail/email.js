@@ -36,7 +36,7 @@ const createTemplate=(verifyToken,name)=>{
     return emailBody
 }
 
-const sendEmail=async(verifyToken, email, name)=>{
+const sendEmail=async(verifyToken, email)=>{
     const emailBody=createTemplate(verifyToken, email)
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
