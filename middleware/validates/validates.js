@@ -46,6 +46,23 @@ const loginAndSignup = (req, res, next) => {
   next();
 };
 
+const emailVerify=(req,res,next)=>{
+  const { body } = req;
+
+  const isValidEmail = Joi.object({
+    email: Joi.string().required(),
+  });
+
+  const validEmail = isValidEmail.validate(body);
+
+  if (validEmail.error) {
+    validEmail.error.code = 400;
+    return next(validEmail.error);
+  }
+
+  next();
+}
+
 // const subscription = (req, res, next) => {
 //   const subscriptionRules = Joi.object({
 //     subscription: Joi.string().valid('starter', 'pro', 'business').required(),
@@ -63,5 +80,5 @@ module.exports = {
   create,
   update,
   loginAndSignup,
-  // subscription,
+  emailVerify,
 };
